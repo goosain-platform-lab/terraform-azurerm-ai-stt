@@ -1,0 +1,15 @@
+# Copy to terraform.tfvars for a local run, or enter these as Terraform
+# variables in the HCP Terraform workspace. Nothing here is a secret.
+
+location = "southafricanorth"
+
+# Optional: only if a globally unique name is taken or recently soft-deleted.
+# unique_suffix = "a1"
+
+# Example of a Key Vault reference (secret added by an operator, see README):
+# api_key_vault_references = {
+#   "ExternalApi__Key" = "external-api-key"
+# }
+
+# Optional hub peering:
+# hub_virtual_network_id = "/subscriptions/<hub-sub>/resourceGroups/<rg>/providers/Microsoft.Network/virtualNetworks/<hub-vnet>"
