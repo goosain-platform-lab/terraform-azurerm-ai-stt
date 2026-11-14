@@ -1,10 +1,21 @@
 # terraform-azurerm-ai-stt
 
+[![ci](https://github.com/goosain-platform-lab/terraform-azurerm-ai-stt/actions/workflows/ci.yml/badge.svg)](https://github.com/goosain-platform-lab/terraform-azurerm-ai-stt/actions/workflows/ci.yml)
+
 Terraform module for a **real-time speech-to-text and translation** workload on Azure, built to run **without secrets**: no keys, connection strings or passwords in code, pipelines or app settings.
 
 - **Standalone:** [`examples/standalone`](examples/standalone) deploys a small spoke network and the workload.
 - **Batch processing:** [terraform-azurerm-ai-stt-batch](https://github.com/goosain-platform-lab/terraform-azurerm-ai-stt-batch) adds a queue-driven pipeline (transcribe, translate, summarise) that plugs into this module's `shared_services` output.
 - **In a landing zone:** [ai-landing-zone-lab](https://github.com/goosain-platform-lab/ai-landing-zone-lab) consumes both modules at pinned tags.
+
+## What this demonstrates
+
+- **Secretless by default:** key auth is off on every service. Apps use managed identities and RBAC, and deployment uses OIDC, so no secret exists anywhere.
+- **Private networking:** Speech, Translator, Storage and Key Vault are reachable only through private endpoints with private DNS. Only the two web apps are public.
+- **Reusable, versioned module:** consumed at a pinned tag by [terraform-azurerm-ai-stt-batch](https://github.com/goosain-platform-lab/terraform-azurerm-ai-stt-batch) and [ai-landing-zone-lab](https://github.com/goosain-platform-lab/ai-landing-zone-lab).
+- **CI quality gates:** `terraform fmt`, `terraform validate`, tflint and Checkov on every pull request, with actions pinned to commit SHAs.
+
+**Status:** validated in CI; not deployed, to avoid running costs.
 
 ## What it deploys
 
